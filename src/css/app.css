@@ -1,0 +1,6 @@
+/* Your app styles here */
+
+.title {text-align: center}
+.navbar-inner{
+    display: inline-block;
+}
