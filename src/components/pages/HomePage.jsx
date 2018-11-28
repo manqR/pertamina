@@ -20,6 +20,32 @@ import {
 import logo from '../../img/logo.png'
 import user from '../../img/user.png'
 
+const StyleHome = {
+    position: 'fixed',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    border: '1px solid #e74c3c',
+    height: '18%',
+    borderRadius: '50%'
+    
+}
+
+const StyleIcons = {
+    color: '#e74c3c',
+    lineHeight: '2',
+    fontSize: '53px'
+}
+
+const StyleLabel = {
+    position: 'absolute',
+    display: '-webkit-box',
+    margin: '13px',
+    color: '#e74c3c',
+    fontFamily: 'framework-7',
+    fontSize: '16px'
+}
+
 export default () => (
     <Page>
         <Navbar>      
@@ -34,12 +60,12 @@ export default () => (
         </Toolbar>
         <Tabs>
             <Tab id="tab-1" className="page-content" tabActive>
-                <Block>
-                    <p>Tab 1 content</p>
-                      ...
+                <Block style={StyleHome}>
+                    <Link href="/register/"><Icon style={StyleIcons} f7="document_check"></Icon></Link>
+                    <label  style={StyleLabel} >Register</label>
                 </Block>
             </Tab>
-            <Tab id="tab-2" className="page-content">              
+            <Tab id="tab-2" className="page-content history">              
                 <Card
                     title="Card header"
                     content="Card with header and footer. Card headers are used to display card titles and footers for additional information or just for custom actions."

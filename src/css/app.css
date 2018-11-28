@@ -1389,6 +1389,7 @@ html.with-statusbar.device-iphone-x .framework7-root {
     overflow: visible
 }
 
+
 .md .navbar~* .page-content, .md .navbar~.page-content {
     padding-top: 56px
 }
@@ -2137,7 +2138,7 @@ html.with-statusbar.device-iphone-x .framework7-root {
 }
 
 .md .toolbar:not(.toolbar-bottom-md):not(.messagebar)~* .page-content, .md .toolbar:not(.toolbar-bottom-md):not(.messagebar)~.page-content {
-    padding-top: 48px
+    padding-top: 30px
 }
 
 .md .toolbar.tabbar-labels:not(.toolbar-bottom-md)~* .page-content, .md .toolbar.tabbar-labels:not(.toolbar-bottom-md)~.page-content {
