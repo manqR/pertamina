@@ -1,7 +1,8 @@
 import HomePage from './components/pages/HomePage';
 import Splash from './components/pages/Splash';
-import AboutPage from './components/pages/AboutPage';
+import LoginPage from './components/pages/LoginPage';
 import FormPage from './components/pages/FormPage';
+import RegisterPage from './components/pages/RegisterPage';
 import DynamicRoutePage from './components/pages/DynamicRoutePage';
 import NotFoundPage from './components/pages/NotFoundPage';
 import PanelLeftPage from './components/pages/PanelLeftPage';
@@ -17,20 +18,20 @@ export default [
     component: HomePage,
   },
   {
-    path: '/panel-left/',
-    component: PanelLeftPage,
+    path: '/login/',
+    component: LoginPage,
   },
   {
     path: '/panel-right/',
     component: PanelRightPage,
   },
   {
-    path: '/about/',
-    component: AboutPage,
-  },
-  {
     path: '/form/',
     component: FormPage,
+  },
+  {
+    path: '/register/',    
+    component: RegisterPage,
   },
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',

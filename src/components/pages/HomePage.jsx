@@ -15,7 +15,8 @@ import {
     Button,
     Tabs,
     Tab,
-    Icon
+    Icon,
+    View
 } from 'framework7-react';
 import logo from '../../img/logo.png'
 import user from '../../img/user.png'
@@ -60,7 +61,7 @@ export default () => (
         </Toolbar>
         <Tabs>
             <Tab id="tab-1" className="page-content" tabActive>
-                <Block style={StyleHome}>
+                <Block style={StyleHome}>                   
                     <Link href="/register/"><Icon style={StyleIcons} f7="document_check"></Icon></Link>
                     <label  style={StyleLabel} >Register</label>
                 </Block>
