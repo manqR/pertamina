@@ -12,7 +12,7 @@ class Splash extends Component {
     render() {
         return (
             <div>
-                
+                X
             </div>
         );
     }
