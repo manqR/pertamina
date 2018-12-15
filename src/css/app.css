@@ -52,6 +52,83 @@
     overflow-x: hidden
 }
 
+
+
+
+/*
+|------------------------------------------------------------------------------
+| ABOUT
+|------------------------------------------------------------------------------
+*/
+
+.page[data-name=about] .navbar-inner{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;    
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+}
+
+
+
+/*
+|------------------------------------------------------------------------------
+| LOGIN
+|------------------------------------------------------------------------------
+*/
+
+.page[data-name=login] .login-screen-content{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 56%;
+    width: 100%;
+}
+
+
+/*
+|------------------------------------------------------------------------------
+| REGISTER
+|------------------------------------------------------------------------------
+*/
+
+.page[data-name=register] .navbar-inner{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;    
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+}
+
+
+
+
+
+
+
 body {
     margin: 0;
     padding: 0;
@@ -967,6 +1044,7 @@ html.with-statusbar.device-iphone-x .framework7-root {
 }
 
 .navbar .title {
+    color:#34495e;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -1008,23 +1086,7 @@ html.with-statusbar.device-iphone-x .framework7-root {
     height: 100%
 }
 
-.navbar-inner {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    /* display: flex; */
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-}
+
 
 .navbar-inner.stacked {
     display: none
@@ -6425,7 +6487,8 @@ i.icon {
 }
 
 .md .icon-back {
-    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E")
+    /* background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E") */
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M20%2011H7.83l5.59-5.59L12%204l-8%208%208%208%201.41-1.41L7.83%2013H20v-2z'%20fill%3D'%23f44336'%2F%3E%3C%2Fsvg%3E")
 }
 
 .md .icon-forward {
