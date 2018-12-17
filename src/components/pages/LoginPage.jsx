@@ -50,18 +50,29 @@ class LoginPage extends Component {
     }
     
     handleSubmit = event => {
-        event.preventDefault();
+        // alert('a')
+        let data = [];
+        data = [this.state.username, this.state.password]
+        localStorage.setItem('loginData', data);
+        // alert('login')
+        
+        this.$f7router.navigate('/home/')
+        //  this.$f7ready((f7)=>{
+        //     f7.router.routes.push('/home/')
+        // })
+    //    console.log(data);
+
     }
 
     render() {
-        console.log('username '+this.state.username)
-        console.log('password '+this.state.password)
+        // console.log('username '+this.state.username)
+        // console.log('password '+this.state.password)
         return (            
             
             <Page loginScreen name="login">
                 {/* <LoginScreen id="login-screen">        */}
                     <LoginScreenTitle><img src={logo} width="150vw" alt="logo"/></LoginScreenTitle>
-                    <List form onSubmit={this.handleSubmit}>
+                    <List form >
                         <ListItem>
                         <Label>Username</Label>
                         <Input name="username" id="username" placeholder="Username" type="text" value={this.state.username} onChange={this.handleChangeUsername}></Input>
@@ -72,7 +83,7 @@ class LoginPage extends Component {
                         </ListItem>
                     </List>
                     <List style={styleList}>                        
-                        <Button className="col"  type="submit" round outline>Sign In</Button>              
+                        <Button className="col"  type="submit" round outline onClick={this.handleSubmit}>Sign In</Button>              
                     </List>
                 {/* </LoginScreen> */}
             </Page>                    
