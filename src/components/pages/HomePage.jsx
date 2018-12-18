@@ -22,14 +22,9 @@ import logo from '../../img/logo.png'
 import user from '../../img/user.png'
 
 const StyleHome = {
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
+    width: '111px',
     border: '1px solid #e74c3c',
-    height: '18%',
-    borderRadius: '50%'
-    
+    borderRadius: '21px'    
 }
 
 const StyleIcons = {
@@ -37,6 +32,20 @@ const StyleIcons = {
     lineHeight: '2',
     fontSize: '53px'
 }
+const StyleLink = {
+    textAlign: 'center',
+     width: '100%'
+}
+
+const StylContent = {    
+        display: 'flex',
+        justifyContent: 'space-around',    
+        margin: '0 auto',        
+        padding: '10px 0',
+        margin:'10px',
+        marginTop: '62vw'
+}
+
 
 const StyleLabel = {
     position: 'absolute',
@@ -84,10 +93,22 @@ class HomePage extends Component {
                 </Toolbar>
                 <Tabs>
                     <Tab id="tab-1" className="page-content" tabActive>
-                        <Block style={StyleHome}>                   
+                        <div style={StylContent}>
+                            <Block style={StyleHome}> 
+                                <span ><Link style={StyleLink} href="/register/"><Icon style={StyleIcons} f7="document_check"></Icon></Link></span>
+                            </Block>
+
+                            <Block style={StyleHome}> 
+                                <span ><Link style={StyleLink} href="/kerusakan/"><Icon style={StyleIcons} f7="gear_fill"></Icon></Link></span>                                                  
+                            </Block>
+                        </div>
+                        {/* <Block style={StyleHome}>                   
+                            <Link href="/register/"><Icon style={StyleIcons} f7="document_check"></Icon></Link>
+                            <label  style={StyleLabel} >Kerusakan</label>
+                       
                             <Link href="/register/"><Icon style={StyleIcons} f7="document_check"></Icon></Link>
                             <label  style={StyleLabel} >Register</label>
-                        </Block>
+                        </Block> */}
                     </Tab>
                     <Tab id="tab-2" className="page-content history">              
                         <Card

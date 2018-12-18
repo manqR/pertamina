@@ -1,12 +1,11 @@
 import HomePage from './components/pages/HomePage';
 import Splash from './components/pages/Splash';
 import LoginPage from './components/pages/LoginPage';
-import FormPage from './components/pages/FormPage';
 import RegisterPage from './components/pages/RegisterPage';
 import DynamicRoutePage from './components/pages/DynamicRoutePage';
 import NotFoundPage from './components/pages/NotFoundPage';
-import PanelLeftPage from './components/pages/PanelLeftPage';
-import PanelRightPage from './components/pages/PanelRightPage';
+import KerusakanPage from './components/pages/KerusakanPage';
+
 
 export default [
   {
@@ -22,12 +21,8 @@ export default [
     component: LoginPage,
   },
   {
-    path: '/panel-right/',
-    component: PanelRightPage,
-  },
-  {
-    path: '/form/',
-    component: FormPage,
+    path: '/kerusakan/',    
+    component: KerusakanPage,
   },
   {
     path: '/register/',    
