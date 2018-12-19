@@ -21,53 +21,17 @@ class KerusakanPage extends Component {
                 <Navbar title="Form Kerusakan" backLink="Back" />   
                 <List form>
                     <ListItem>
-                        <Label>Plat Nomor</Label>
-                        <Input type="text" placeholder="Plat Nomor" />
+                        <Label>Bagian / Fungsi :</Label>
+                        <Input type="text" placeholder=" ..."></Input>
                     </ListItem>
                     <ListItem>
-                        <Label>Jenis Registrasi</Label>
-                        <Input type="select">
-                        <option selected>Checklist</option>
-                        <option>Kerusakan</option>
-                        </Input>
+                        <Label>Laporan Kerusakan :</Label>
+                        <Input type="text" placeholder=" ..."></Input>
                     </ListItem>
-                    <ListItem title="Dop Roda Besar">
-                        <Toggle slot="after" />
-                    </ListItem>
-                    <ListItem title="Dop Roda Kecil">
-                        <Toggle slot="after" />
-                    </ListItem>
-                    <ListItem title="Cover Ban">
-                        <Toggle slot="after" />
-                    </ListItem>
-                    <ListItem title="Ban Serep">
-                        <Toggle slot="after" />
-                    </ListItem>
-                    <ListItem title="Kondisi Ban Serep">
-                        <Toggle slot="after" />
-                    </ListItem>
-                    <ListItem title="Kondisi Ban Belakang">
-                        <Toggle slot="after" />
-                    </ListItem>
-                    <ListItem title="Karpet Lantai">
-                        <Toggle slot="after" />
-                    </ListItem>
-                    <ListItem title="Karpet Roda">
-                        <Toggle slot="after" />
-                    </ListItem>
-                    <ListItem title="Karpet Bagasi">
-                        <Toggle slot="after" />
-                    </ListItem>
-                    <ListItem title="Kunci Roda">
-                        <Toggle slot="after" />
-                    </ListItem>
-            
                     <ListItem>
-                        <Label>Keluhan</Label>
+                        <Label>Lainnya</Label>
                         <Input type="textarea" placeholder="Keluhan Kerusakan ..."></Input>
-                    </ListItem>
-
-                
+                    </ListItem>                
             
                     <Block strong>            
                         <Row tag="p">                    
@@ -75,9 +39,7 @@ class KerusakanPage extends Component {
                         </Row>            
                     </Block>
 
-                </List>
-
-            
+                </List>            
             </Page>
         );
     }

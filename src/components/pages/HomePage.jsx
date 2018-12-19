@@ -112,9 +112,9 @@ class HomePage extends Component {
                     </Tab>
                     <Tab id="tab-2" className="page-content history">              
                         <Card
-                            title="Card header"
+                            title="#REG-18123932"
                             content="Card with header and footer. Card headers are used to display card titles and footers for additional information or just for custom actions."
-                            footer="Card footer">
+                            footer="Proses">
                         </Card>               
                     </Tab>
                     <Tab id="tab-3" className="page-content user">               
