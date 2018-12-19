@@ -2,6 +2,7 @@
   "name": "framework7-react-app-template",
   "version": "3.0.0",
   "private": true,
+  "homepage": "./",
   "dependencies": {
     "framework7": "^3.0.1",
     "framework7-react": "^3.0.1",
@@ -13,7 +14,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && robocopy .\\build ..\\www /MIR",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "copy-fonts": "cpy node_modules/framework7-icons/fonts/*.* src/fonts && cpy node_modules/material-design-icons/iconfont/*.{eot,ttf,woff,woff2} src/fonts",

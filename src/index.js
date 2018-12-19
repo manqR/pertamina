@@ -24,7 +24,17 @@ import './css/app.css';
 Framework7.use(Framework7React);
 
 // Mount React App
-ReactDOM.render(
-  React.createElement(App),
-  document.getElementById('app'),
-);
+
+
+const startApp = () => {
+  ReactDOM.render(
+    React.createElement(App),
+    document.getElementById('app'),
+  );
+  }
+  
+  if(!window.cordova) {
+      startApp()
+  } else {
+      document.addEventListener('deviceready', startApp, false)
+  }
