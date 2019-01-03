@@ -63,6 +63,13 @@ const styleList = {
 
 class HomePage extends Component {
 
+    constructor(props){
+        super(props);
+
+        this.state = {
+            data : ''
+        }
+    }
     
     logout = () => {
        
@@ -79,6 +86,12 @@ class HomePage extends Component {
     }
 
     render() {
+        try{
+            this.data = localStorage.getItem('loginData').split(',')
+        }catch(err) {
+           this.data = '';
+        }
+
         return (
             <Page>
                 <Navbar>      
@@ -119,7 +132,7 @@ class HomePage extends Component {
                     </Tab>
                     <Tab id="tab-3" className="page-content user">               
                         <img src={user} width="150vw" alt="user"/>                    
-                        <p className="username">Adi Nugraha</p>
+                        <p className="username">{this.data[0]}</p>
                         <List style={styleList}>     
                             <Button className="col"  type="submit" round outline onClick={this.logout}>Logout</Button>      
                         </List>
