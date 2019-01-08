@@ -16,8 +16,9 @@ import {
     BlockFooter,
     ListButton
   } from 'framework7-react';
-
-  import logo from '../../img/logo.png'
+  import axios from 'axios';
+  import { sha256, sha224 } from 'js-sha256';
+  import logo from '../../img/logo.png';
 
   const styleList = {
       width:'50%'
@@ -33,6 +34,9 @@ class LoginPage extends Component {
             username: "",
             password: ""
         };
+        this.submitHandler = this.submitHandler.bind(this);
+        this.handleChangePassword = this.handleChangePassword.bind(this);
+        this.handleChangeUsername = this.handleChangeUsername.bind(this);
     }
 
   
@@ -49,33 +53,64 @@ class LoginPage extends Component {
         });
     }
     
-    handleSubmit = event => {
-        // alert('a')
-        let data = [];
-        data = [this.state.username, this.state.password]
-        localStorage.setItem('loginData', data);
-        // alert('login')
-        
-        this.$f7router.navigate('/home/')
-        //  this.$f7ready((f7)=>{
-        //     f7.router.routes.push('/home/')
-        // })
-    //    console.log(data);
+    serialize = obj => {
+        let str = [];
+        for (let p in obj)
+          if (obj.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          }
+        return str.join("&");
+    };
 
+    submitHandler(e) { 
+        e.preventDefault();
+
+        this.$f7.preloader.show();
+
+        axios('http://localhost/pertamina/index.php?r=api/login-post', {
+            method: "POST",
+            proxyHeaders: false,
+            credentials: false,
+            headers: {
+              
+                      "Content-Type": "application/x-www-form-urlencoded",
+                      "Accept": "application/json"
+            },
+            data: this.serialize({
+                username: this.state.username,
+                password: this.state.password,               
+            })
+        }).then(response => { 
+           
+            if(response.data.msg === 'success'){
+                let data = [];
+                data = [response.data.data.nama_pegawai, response.data.role.nama_jabatan]
+                localStorage.setItem('loginData', data);  
+                
+                console.log('local'+localStorage.getItem('loginData'));
+                this.$f7router.navigate('/home/')
+                this.$f7.preloader.hide();
+            }else{
+                alert('Nik atau Password Salah !')
+                this.$f7.preloader.hide();
+            }
+            console.log(response.data.msg)
+        }).catch(error => {
+            console.log(error.response)
+        });        
+       
     }
 
-    render() {
-        // console.log('username '+this.state.username)
-        // console.log('password '+this.state.password)
+
+    render() {        
         return (            
             
-            <Page loginScreen name="login">
-                {/* <LoginScreen id="login-screen">        */}
+            <Page loginScreen name="login">            
                     <LoginScreenTitle><img src={logo} width="150vw" alt="logo"/></LoginScreenTitle>
                     <List form >
                         <ListItem>
-                        <Label>Username</Label>
-                        <Input name="username" id="username" placeholder="Username" type="text" value={this.state.username} onChange={this.handleChangeUsername}></Input>
+                        <Label>Nik Pegawai</Label>
+                        <Input name="username" id="username" placeholder="Nik Pegawai" type="text" value={this.state.username} onChange={this.handleChangeUsername}></Input>
                         </ListItem>
                         <ListItem>
                         <Label>Password</Label>
@@ -83,9 +118,8 @@ class LoginPage extends Component {
                         </ListItem>
                     </List>
                     <List style={styleList}>                        
-                        <Button className="col"  type="submit" round outline onClick={this.handleSubmit}>Sign In</Button>              
-                    </List>
-                {/* </LoginScreen> */}
+                        <Button className="col"  type="submit" round outline onClick={this.submitHandler}>Sign In</Button>              
+                    </List>                
             </Page>                    
                
         );

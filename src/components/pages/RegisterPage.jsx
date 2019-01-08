@@ -14,50 +14,90 @@ import {
     Block
   } from 'framework7-react';
 
+import axios from 'axios';
 
   
 class RegisterPage extends Component {
 
 
-    constructor(props, context) {
-        super(props, context);
-
+    constructor() {
+        super();
         this.state = {
-            active: true,
+          form: {
+            check : [],
+            remarks : [],
+            label : []
+          }
         };
-
-        this.handleClick = this.handleClick.bind(this);
+        this._refs = {};
+        this.changeHandler = this.changeHandler.bind(this);
+        this.submitHandler = this.submitHandler.bind(this);
     }
 
-    handleClick() {
-        this.setState({
-            active: !this.state.active
+   
+    changeHandler(index, e) {
+        e.persist();
+        let store = this.state;
+        store.form[e.target.name] = e.target.value;
+        this.setState(store);        
+    }
+
+    serialize = obj => {
+        let str = [];
+        for (let p in obj)
+          if (obj.hasOwnProperty(p)) {
+            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          }
+        return str.join("&");
+    };
+
+    submitHandler(e) { 
+        e.preventDefault();
+
+        let rmrks = [
+            this.state.form.remarks1,
+            this.state.form.remarks2,
+            // this.state.form.remarks3,
+            // this.state.form.remarks4,
+            // this.state.form.remarks5,
+            // this.state.form.remarks6,
+            // this.state.form.remarks7,
+            // this.state.form.remarks8,
+            // this.state.form.remarks9,
+            // this.state.form.remarks10,
+        ]
+        axios('http://localhost/pertamina/index.php?r=api/checklist', {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+                      "Content-Type": "application/x-www-form-urlencoded"
+            },
+            data: this.serialize({
+                check: this.state.form.check,
+                remarks: rmrks,
+                label: this.state.form.label,                
+            })
+        }).then(response => {
+            // console.log(response);
+        }).catch(error => {
+            console.log(error.response);
         });
-        console.log('a')
     }
 
-
-
-    edit(){
-        console.log('toggle')
-    }
-
-
+   
     
-    render() {
-        // console.log(localStorage.getItem(localStorage.key(0)))
+    render() {        
         let data = localStorage.getItem('loginData').split(',')
-        // data = new Array(data)
-        // data = JSON.parse(data).toString();
-        
+        const { form } = this.state;
         return (
             <Page name="register">
                 <Navbar title="Form Checklist" backLink="Back" />   
 
                 <List form>                    
                 
-                    <ListItem title="Cleanliness">                     
-                        <Input style={{width:'85%'}}type="text" placeholder="Remarks" value="" />                        
+                    <ListItem title="Cleanliness">  
+                        <Input style={{width:'85%'}} type="text" placeholder="Remarks" value={form.remarks1} onChange={this.changeHandler.bind(this, 1)} name="remarks1" />  
+                        <Input type="hidden" style={{'display':'none'}} value="Cleanliness" name="label[]"/>                      
                         <Toggle 
                             name="check[]"
                             color="green" slot="after"
@@ -65,8 +105,9 @@ class RegisterPage extends Component {
                             onToggleChange={(checked)=>console.log('toggle is checked?', checked)}>
                         </Toggle>
                     </ListItem>
-                    <ListItem title="Truck conditionsl">
-                        <Input style={{width:'85%'}}type="text" placeholder="Remarks" value="" />
+                    <ListItem title="Truck conditions">
+                        <Input style={{width:'85%'}}type="text" placeholder="Remarks" value={form.remarks2} onChange={this.changeHandler.bind(this, 2)}  name="remarks2"/>
+                        <Input type="hidden" style={{'display':'none'}} value="Truck conditions" name="label[]"/>
                         <Toggle 
                             name="check[]"
                             color="green" slot="after"
@@ -75,7 +116,8 @@ class RegisterPage extends Component {
                         </Toggle>
                     </ListItem>
                     <ListItem title="Fuel">
-                        <Input style={{width:'85%'}}type="text" placeholder="Remarks" value="" />
+                        <Input style={{width:'85%'}}type="text" placeholder="Remarks" value="" name="remarks[]"/>
+                        <Input type="hidden" style={{'display':'none'}} value="Fuel" name="label[]"/>
                         <Toggle 
                             name="check[]"
                             color="green" slot="after"
@@ -84,7 +126,8 @@ class RegisterPage extends Component {
                         </Toggle>
                     </ListItem>
                     <ListItem title="Radiator condition/water">
-                        <Input style={{width:'85%'}}type="text" placeholder="Remarks" value="" />
+                        <Input style={{width:'85%'}}type="text" placeholder="Remarks" value="" name="remarks[]" />
+                        <Input type="hidden" value="Radiator condition/water" style={{'display':'none'}} name="label[]"/>
                         <Toggle 
                             name="check[]"
                             color="green" slot="after"
@@ -93,7 +136,8 @@ class RegisterPage extends Component {
                         </Toggle>
                     </ListItem>
                     <ListItem title="Lubricants">
-                        <Input style={{width:'85%'}}type="text" placeholder="Remarks" value="" />
+                        <Input style={{width:'85%'}}type="text" placeholder="Remarks" value="" name="remarks[]"/>
+                        <Input type="hidden" value="Lubricants" style={{'display':'none'}} name="label[]"/>
                         <Toggle 
                             name="check[]"
                             color="green" slot="after"
@@ -102,7 +146,8 @@ class RegisterPage extends Component {
                         </Toggle>
                     </ListItem>
                     <ListItem title="Battery condition">
-                        <Input style={{width:'85%'}}type="text" placeholder="Remarks" value="" />
+                        <Input style={{width:'85%'}}type="text" placeholder="Remarks" value="" name="remarks[]"/>
+                        <Input type="hidden" style={{'display':'none'}} value="Battery condition" name="label[]"/>
                         <Toggle 
                             name="check[]"
                             color="green" slot="after"
@@ -110,7 +155,7 @@ class RegisterPage extends Component {
                             onToggleChange={(checked)=>console.log('toggle is checked?', checked)}>
                         </Toggle>
                     </ListItem>
-                    <ListItem title="Brake">
+                    {/* <ListItem title="Brake">
                         <Input style={{width:'85%'}}type="text" placeholder="Remarks" value="" />
                         <Toggle 
                             name="check[]"
@@ -370,10 +415,10 @@ class RegisterPage extends Component {
                     <ListItem>
                         <Label>Checked By :</Label>
                         <Input type="text" placeholder={data[0] != '' ? data[0] : '....' } readonly={data[0] != '' ? true : false} value={data[0]}></Input>
-                    </ListItem>        
+                    </ListItem>         */}
                     <Block strong>            
                         <Row tag="p">                    
-                            <Button className="col" round outline onClick={() => this.SubmitForm}>Submit</Button>
+                            <Button className="col" round outline onClick={this.submitHandler}>Submit</Button>
                         </Row>            
                     </Block>
 

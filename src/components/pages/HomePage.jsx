@@ -102,7 +102,7 @@ class HomePage extends Component {
                     <Link tabLink="#tab-1" tabLinkActiNve><Icon f7="home"></Icon></Link>
                     <Link tabLink="#tab-2"><Icon f7="list"></Icon></Link>
                     <Link tabLink="#tab-3"><Icon f7="person"></Icon></Link>
-                    <Link tabLink="#tab-4"><Icon f7="help"></Icon></Link>
+                    <Link tabLink="#tab-4"><Icon f7="info"></Icon></Link>
                 </Toolbar>
                 <Tabs>
                     <Tab id="tab-1" className="page-content" tabActive>
@@ -133,6 +133,7 @@ class HomePage extends Component {
                     <Tab id="tab-3" className="page-content user">               
                         <img src={user} width="150vw" alt="user"/>                    
                         <p className="username">{this.data[0]}</p>
+                        <p className="username">{this.data[1]}</p>
                         <List style={styleList}>     
                             <Button className="col"  type="submit" round outline onClick={this.logout}>Logout</Button>      
                         </List>
