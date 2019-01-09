@@ -157,6 +157,36 @@
 
 
 
+/*
+|------------------------------------------------------------------------------
+| APPROVAL
+|------------------------------------------------------------------------------
+*/
+
+.page[data-name=detail] .navbar-inner{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;    
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+}
+
+.page[data-name=detail] .item-after{
+    float:right;
+}
+
+
 
 
 

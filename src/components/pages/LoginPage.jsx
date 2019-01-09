@@ -84,7 +84,7 @@ class LoginPage extends Component {
            
             if(response.data.msg === 'success'){
                 let data = [];
-                data = [response.data.data.nama_pegawai, response.data.role.nama_jabatan]
+                data = [response.data.data.nama_pegawai, response.data.role.nama_jabatan,response.data.data.username]
                 localStorage.setItem('loginData', data);  
                 
                 console.log('local'+localStorage.getItem('loginData'));

@@ -5,6 +5,8 @@ import RegisterPage from './components/pages/RegisterPage';
 import DynamicRoutePage from './components/pages/DynamicRoutePage';
 import NotFoundPage from './components/pages/NotFoundPage';
 import KerusakanPage from './components/pages/KerusakanPage';
+import KerusakanDetail from './components/pages/KerusakanDetailPage';
+import KerusakanDetailPage from './components/pages/KerusakanDetailPage';
 
 
 export default [
@@ -31,6 +33,10 @@ export default [
   {
     path: '/dynamic-route/blog/:blogId/post/:postId/',
     component: DynamicRoutePage,
+  },
+  {
+    path: '/detail/id/:detailId/',
+    component: KerusakanDetailPage,
   },
   {
     path: '(.*)',

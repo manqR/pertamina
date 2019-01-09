@@ -16,7 +16,8 @@ import {
     Tabs,
     Tab,
     Icon,
-    View
+    View,
+    Chip
 } from 'framework7-react';
 import logo from '../../img/logo.png'
 import user from '../../img/user.png'
@@ -32,9 +33,15 @@ const StyleIcons = {
     lineHeight: '2',
     fontSize: '53px'
 }
+
 const StyleLink = {
     textAlign: 'center',
      width: '100%'
+}
+const StyleLinkCard = {
+    textAlign: 'justify',
+     width: '100%',
+     color:'#000'
 }
 
 const StylContent = {    
@@ -61,16 +68,50 @@ const styleList = {
     left:'25%'
 }
 
+
+
 class HomePage extends Component {
 
     constructor(props){
         super(props);
 
         this.state = {
-            data : ''
+            data  : '',
+            datas : [],
+            notif : []
         }
     }
     
+    componentDidMount() {            
+
+       
+
+        this.mounted = true;    
+
+        try{
+            this.data = localStorage.getItem('loginData').split(',')
+        }catch(err) {
+           this.data = '';
+        }
+        
+        const BASE_URL = `http://localhost/pertamina/index.php?r=api/get-histori&id=${this.data[2]}`; 
+        fetch(BASE_URL)
+        .then(response => response.json())
+        .then(json => {
+            this.setState({ datas: json});  
+            // console.log(this.state.remarks)     
+        });   
+
+        const BASE_URL2 = `http://localhost/pertamina/index.php?r=api/get-notifikasi&id=${this.data[2]}`; 
+        fetch(BASE_URL2)
+        .then(response => response.json())
+        .then(json => {
+            this.setState({ notif: json});  
+            // console.log(this.state.notif.msg)     
+        });     
+        
+    }
+
     logout = () => {
        
             localStorage.removeItem('loginData');
@@ -85,13 +126,76 @@ class HomePage extends Component {
            
     }
 
+    componentWillUnmount() {
+        this.mounted = false;
+    }
+
+    
     render() {
+     
         try{
             this.data = localStorage.getItem('loginData').split(',')
         }catch(err) {
            this.data = '';
         }
+    
 
+        const historyData = this.state.datas.map((hist,i) => {
+            let status = ''
+            let words = ''
+            if(hist.status == 1){
+                status = <Chip text="Pending" color="orange"></Chip>
+                words = "Form Menunggu Approval dari SPV";
+            }else if (hist.status == 2){                
+                status = <Chip text="Approve" color="blue"></Chip>
+                words = 'Form Sudah di Approve dan sedang menunggu Teknisi'
+            }else if(hist.status == 3){                
+                status = <Chip text="on Progress" color="red"></Chip>
+                words = 'Teknisi sedang melakukan pekerjaan atas Request ini'
+            }else if(hist.status == 4){                
+                status = <Chip text="Approve Done" color="green"></Chip>
+                words = 'Teknisi sudah selesai dan bisa di cek kembali'
+            }
+            // console.log(hist)
+            return   <Card key={i}
+                        title={hist.kode_form}
+                        content={words}
+                        footer={status}>
+                    </Card>   
+            // console.log(remrk.keterangan)
+        })    
+        let NotifikasiData =''
+        try{
+            NotifikasiData = this.state.notif.map((note,i) => {
+                let status = ''
+                let words = ''
+                if(note.status == 1){
+                    status = <Chip text="Pending" color="orange"></Chip>
+                    words = "Form Menunggu Approval dari SPV";
+                }else if (note.status == 2){                
+                    status = <Chip text="Approve" color="blue"></Chip>
+                    words = 'Form Sudah di Approve dan sedang menunggu Teknisi'
+                }else if(note.status == 3){                
+                    status = <Chip text="on Progress" color="red"></Chip>
+                    words = 'Teknisi sedang melakukan pekerjaan atas Request ini'
+                }else if(note.status == 4){                
+                    status = <Chip text="Approve Done" color="green"></Chip>
+                    words = 'Teknisi sudah selesai dan bisa di cek kembali'
+                }
+                // console.log(hist)
+                let link = `/detail/id/${note.kode_form}/`;
+                return   <a key ="1" style={StyleLinkCard} href={link}>
+                            <Card key={i}
+                                title={note.kode_form}
+                                content={words}
+                                footer={status}>
+                            </Card>  
+                        </a>
+                // console.log(remrk.keterangan)
+            })    
+        }catch(e){
+            NotifikasiData = 'Data Tidak ditemukan';
+        }
         return (
             <Page>
                 <Navbar>      
@@ -124,11 +228,7 @@ class HomePage extends Component {
                         </Block> */}
                     </Tab>
                     <Tab id="tab-2" className="page-content history">              
-                        <Card
-                            title="#REG-18123932"
-                            content="Card with header and footer. Card headers are used to display card titles and footers for additional information or just for custom actions."
-                            footer="Proses">
-                        </Card>               
+                        {historyData}         
                     </Tab>
                     <Tab id="tab-3" className="page-content user">               
                         <img src={user} width="150vw" alt="user"/>                    
@@ -139,10 +239,7 @@ class HomePage extends Component {
                         </List>
                     </Tab>
                     <Tab id="tab-4" className="page-content">
-                        <Block>
-                            <p>Tab 3 content</p>
-                            ...
-                        </Block>
+                        {NotifikasiData}
                     </Tab>
                 </Tabs>
             </Page>
